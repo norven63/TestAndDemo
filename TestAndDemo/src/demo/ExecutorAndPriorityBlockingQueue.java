@@ -8,7 +8,9 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * 核心的两个类：
- * 线程池 ExecutorService
+ * 线程池接口 ExecutorService
+ * 线程池实现 ThreadPoolExecutor
+ * 阻塞队列 接口 BlockingQueue
  * 带排序的阻塞队列 PriorityBlockingQueue
  * 
  * 1：
