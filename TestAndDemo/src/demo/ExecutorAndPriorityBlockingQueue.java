@@ -7,14 +7,14 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 /**
- * 核心的两个类：
+ * 核心的几个类：
  * 线程池接口 ExecutorService
  * 线程池实现 ThreadPoolExecutor
  * 阻塞队列 接口 BlockingQueue
  * 带排序的阻塞队列 PriorityBlockingQueue
  * 
  * 1：
- * 首先，每个线程池内都有一个阻塞队列用来缓存还来不及被蹂躏的任务。根据不同的线程池实现，内部的阻塞队列实现也有所不同，具体可参阅源码。
+ * 首先，每个线程池内都有一个阻塞队列用来缓存尚未被处理的任务。根据不同的线程池实现，内部的阻塞队列实现也有所不同，具体可参阅源码。
  * 
  * 2：
  * 那么，如果想实现优先级线程池，关键只要实现任务队列的优先级功能即可，于是便考虑使用PriorityBlockingQueue，
