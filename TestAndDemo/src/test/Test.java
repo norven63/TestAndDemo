@@ -1,11 +1,11 @@
 package test;
 
 public class Test {
-	private static class ClassA {
-		private ClassA() {
+	public static void main(String[] args) {
+		String string = "a.b.c";
+		String[] strings = string.split("\\.");
+		for (String item : strings) {
+			System.out.println(item);
 		}
-	}
-
-	private static class ClassB extends ClassA {
 	}
 }
