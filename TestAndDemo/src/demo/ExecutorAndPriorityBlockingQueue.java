@@ -58,8 +58,12 @@ public class ExecutorAndPriorityBlockingQueue {
 		PriorityRunnable priorityRunnable11 = new PriorityRunnable(11);
 
 		BlockingQueue<Runnable> priorityBlockingQueue = new PriorityBlockingQueue<>(1);
-		int threads = 1;// 注意这个参数！若其值为1时,那么打印输出将会1个1个出现；为2时，则会2个2个出现，以此类推。原因是这货代表了同时运行的线程数
-		ExecutorService executorService = new ThreadPoolExecutor(threads, threads, 0L, TimeUnit.MILLISECONDS, priorityBlockingQueue);
+
+		// 注意这个参数！若其值为1时,那么打印输出将会1个1个出现；为2时，则会2个2个出现，以此类推。原因是这货代表了同时运行的线程数
+		int threads = 1;
+
+		ExecutorService executorService = new ThreadPoolExecutor(threads, threads, 0L, TimeUnit.MILLISECONDS,
+				priorityBlockingQueue);
 		executorService.execute(priorityRunnable11);
 		executorService.execute(priorityRunnable11);
 		executorService.execute(priorityRunnable19);
