@@ -1,4 +1,4 @@
-package test;
+package demo.typeParameter;
 
 public class ClassB_2 implements InterfaceB<ClassC_2> {
 

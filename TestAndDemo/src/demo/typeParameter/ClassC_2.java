@@ -1,4 +1,4 @@
-package test;
+package demo.typeParameter;
 
 public class ClassC_2 {
 	public String name() {

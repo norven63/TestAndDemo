@@ -1,4 +1,4 @@
-package test;
+package demo.typeParameter;
 
 public class Test {
 	public static void main(String[] args) {
