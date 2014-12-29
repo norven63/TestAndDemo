@@ -7,22 +7,22 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 /**
- * ���ĵļ����ࣺ
- * �̳߳ؽӿ� ExecutorService
- * �̳߳�ʵ�� ThreadPoolExecutor
- * �������� �ӿ� BlockingQueue
- * ��������������� PriorityBlockingQueue
+ * 核心的几个类：
+ * 线程池接口 ExecutorService
+ * 线程池实现 ThreadPoolExecutor
+ * 阻塞队列 接口 BlockingQueue
+ * 带排序的阻塞队列 PriorityBlockingQueue
  * 
- * 1��
- * ���ȣ�ÿ���̳߳��ڶ���һ��������������������δ�����������񡣸��ݲ�ͬ���̳߳�ʵ�֣��ڲ�����������ʵ��Ҳ������ͬ������ɲ���Դ�롣
+ * 1：
+ * 首先，每个线程池内都有一个阻塞队列用来缓存尚未被处理的任务。根据不同的线程池实现，内部的阻塞队列实现也有所不同，具体可参阅源码。
  * 
- * 2��
- * ��ô�������ʵ�����ȼ��̳߳أ��ؼ�ֻҪʵ��������е����ȼ����ܼ��ɣ����Ǳ㿼��ʹ��PriorityBlockingQueue��
- * ������Լ��ڲ���ŵ�Ԫ�ؾ��������ܡ�
+ * 2：
+ * 那么，如果想实现优先级线程池，关键只要实现任务队列的优先级功能即可，于是便考虑使用PriorityBlockingQueue，
+ * 这货对自己内部存放的元素具有排序功能。
  * 
- * 3��
- * Executors�ĸ�������������Ȼ���������ǻ�ȡ��Ҫ�ľ��в�ͬ�ص��ExecutorService����ͬʱҲ�������޷��Զ������ڲ��Ĺ��죬
- * ����������������������������� �����ԣ�������Ҫ�Լ�new��һ��ExecutorService��������������ʹ�õ��������� ʵ�ִ������м��ɡ�
+ * 3：
+ * Executors的各个工厂方法虽然方便了我们获取想要的具有不同特点的ExecutorService，但同时也让我们无法自定义其内部的构造，
+ * 包括他们用来缓存任务的阻塞队列 。所以，我们需要自己new出一个ExecutorService，并将我们所想使用的阻塞队列 实现传入其中即可。
  * 
  * @author Administrator
  * 
@@ -59,7 +59,7 @@ public class ExecutorAndPriorityBlockingQueue {
 
 		BlockingQueue<Runnable> priorityBlockingQueue = new PriorityBlockingQueue<Runnable>(1);
 
-		// ע���������������ֵΪ1ʱ,��ô��ӡ�������1��1�����֣�Ϊ2ʱ�����2��2�����֣��Դ����ơ�ԭ�������������ͬʱ���е��߳���
+		// 注意这个参数！若其值为1时,那么打印输出将会1个1个出现；为2时，则会2个2个出现，以此类推。原因是这货代表了同时运行的线程数
 		int threads = 1;
 
 		ExecutorService executorService = new ThreadPoolExecutor(threads, threads, 0L, TimeUnit.MILLISECONDS,

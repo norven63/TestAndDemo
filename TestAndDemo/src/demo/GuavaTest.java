@@ -14,7 +14,7 @@ import com.google.common.collect.Multimaps;
 
 public class GuavaTest {
 	public static void main(String[] args) {
-		// °´ÕÕÖ¸¶¨key¶ÔÓ¦µÄvalue½«mapÅÅĞò(Ç¿´óµÄ·ÖÆ¬¼¯ºÏ)
+		// æŒ‰ç…§æŒ‡å®škeyå¯¹åº”çš„valueå°†mapæ’åº(å¼ºå¤§çš„åˆ†ç‰‡é›†åˆ)
 		Map<String, String> map1 = ImmutableMap.of("1", "a", "2", "b", "3", "c");
 		Map<String, String> map2 = ImmutableMap.of("1", "a", "2", "b_", "3", "c_");
 		Map<String, String> map3 = ImmutableMap.of("1", "a_*", "2", "b_*", "3", "c_*");
@@ -34,7 +34,7 @@ public class GuavaTest {
 
 		System.out.println("Multimaps.index: \n" + partitionedMap + "\n\n");
 
-		// Multimap£º 1¸ökey¶ÔÓ¦N¸övalue
+		// Multimapï¼š 1ä¸ªkeyå¯¹åº”Nä¸ªvalue
 		Multimap<String, String> customersByType = ArrayListMultimap.create();
 		customersByType.put("abc", "123");
 		customersByType.put("abc", "456");
@@ -43,22 +43,22 @@ public class GuavaTest {
 		customersByType.put("abcd", "220");
 		customersByType.put("abcde", "330");
 
-		System.out.println("Multimap£º");
+		System.out.println("Multimapï¼š");
 		for (String item : customersByType.get("abc")) {
 			System.out.println(item);
 		}
 		System.out.println("\n");
 
-		// MapDifferenceµÄÒ»Ğ©ÓÃ·¨
+		// MapDifferenceçš„ä¸€äº›ç”¨æ³•
 		Map<String, String> mapA = ImmutableMap.of("1", "a", "2", "b", "3", "c", "22", "bb");
 		Map<String, String> mapB = ImmutableMap.of("1", "a", "2", "b_", "3", "c_");
 
 		MapDifference differenceMap = Maps.difference(mapA, mapB);
 
-		Map entriesDiffering = differenceMap.entriesDiffering();// Í¬Ò»¸ökey,²»Í¬µÄvalue
-		Map entriesOnlyOnLeft = differenceMap.entriesOnlyOnLeft();// Ö»ÔÚ×ómap´æÔÚµÄkey
-		Map entriesOnlyOnRight = differenceMap.entriesOnlyOnRight();// Ö»ÔÚÓÒmap´æÔÚµÄkey
-		Map entriesInCommon = differenceMap.entriesInCommon();// Í¬Ò»¸ökey,Í¬Ò»¸övalue
+		Map entriesDiffering = differenceMap.entriesDiffering();// åŒä¸€ä¸ªkey,ä¸åŒçš„value
+		Map entriesOnlyOnLeft = differenceMap.entriesOnlyOnLeft();// åªåœ¨å·¦mapå­˜åœ¨çš„key
+		Map entriesOnlyOnRight = differenceMap.entriesOnlyOnRight();// åªåœ¨å³mapå­˜åœ¨çš„key
+		Map entriesInCommon = differenceMap.entriesInCommon();// åŒä¸€ä¸ªkey,åŒä¸€ä¸ªvalue
 
 		System.out.println("MapDifference: \n" + differenceMap.entriesDiffering());
 		System.out.println(differenceMap.entriesOnlyOnLeft());

@@ -6,12 +6,12 @@ import java.util.List;
 public class TestDemo {
 	public static void main(String[] args) {
 		A a = new A();
-		List<A> list = a.testA(a);// ÕâÀïÉùÃ÷listÊ±£¬ËùÓÃµÄA¼´»á¸øÏÂÃæµÄtestA·½·¨µÚÒ»¸öV¸³Öµ
+		List<A> list = a.testA(a);// è¿™é‡Œå£°æ˜listæ—¶ï¼Œæ‰€ç”¨çš„Aå³ä¼šç»™ä¸‹é¢çš„testAæ–¹æ³•ç¬¬ä¸€ä¸ªVèµ‹å€¼
 		System.out.println(list.get(0));
 	}
 
 	static class A {
-		// µÚÒ»¸öV²ÅÊÇ·½·¨Àï¿ÉÒÔÓÃµÄ¡£µÚ¶ş¸öVÖ»ÊÇÓÃÀ´¿ØÖÆ·µ»ØÖµµÄÀàĞÍ¡£
+		// ç¬¬ä¸€ä¸ªVæ‰æ˜¯æ–¹æ³•é‡Œå¯ä»¥ç”¨çš„ã€‚ç¬¬äºŒä¸ªVåªæ˜¯ç”¨æ¥æ§åˆ¶è¿”å›å€¼çš„ç±»å‹ã€‚
 		public <V> List<V> testA(V v) {
 			List<V> returnVlaue = new ArrayList<V>();
 			returnVlaue.add(v);

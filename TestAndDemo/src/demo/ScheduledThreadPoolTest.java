@@ -7,38 +7,38 @@ import java.util.concurrent.TimeUnit;
 
 public class ScheduledThreadPoolTest {
 	public static void main(String[] args) {
-		// ´´½¨¶¨Ê±Æ÷
+		// åˆ›å»ºå®šæ—¶å™¨
 		final ScheduledExecutorService schedule = Executors.newScheduledThreadPool(1);
 
-		// ¿ªÊ¼ÈÎÎñ
+		// å¼€å§‹ä»»åŠ¡
 		final Future future1 = schedule.scheduleAtFixedRate(new Runnable() {
 			@Override
 			public void run() {
-				System.out.println("ÈÎÎñ1");
+				System.out.println("ä»»åŠ¡1");
 			}
-		}, 2, 1, TimeUnit.SECONDS);// 2±íÊ¾2ÃëºóÖ´ĞĞ,1±íÊ¾Ñ­»·¼ä¸ôÎª1Ãë
+		}, 2, 1, TimeUnit.SECONDS);// 2è¡¨ç¤º2ç§’åæ‰§è¡Œ,1è¡¨ç¤ºå¾ªç¯é—´éš”ä¸º1ç§’
 
 		final Future future2 = schedule.scheduleAtFixedRate(new Runnable() {
 			@Override
 			public void run() {
-				System.out.println("ÈÎÎñ2");
+				System.out.println("ä»»åŠ¡2");
 			}
 		}, 2, 1, TimeUnit.SECONDS);
 
-		// È¡ÏûÈÎÎñ
+		// å–æ¶ˆä»»åŠ¡
 		schedule.schedule(new Runnable() {
 			@Override
 			public void run() {
-				future1.cancel(false);// È¡ÏûÈÎÎñ1
-				System.out.println("ÈÎÎñ1ÒÑÈ¡Ïû!");
+				future1.cancel(false);// å–æ¶ˆä»»åŠ¡1
+				System.out.println("ä»»åŠ¡1å·²å–æ¶ˆ!");
 			}
 		}, 4, TimeUnit.SECONDS);
 
 		schedule.schedule(new Runnable() {
 			@Override
 			public void run() {
-				schedule.shutdown();// È¡ÏûÕû¸öÏß³Ì³Ø
-				System.out.println("Ïß³Ì³ØÒÑÈ¡Ïû!");
+				schedule.shutdown();// å–æ¶ˆæ•´ä¸ªçº¿ç¨‹æ± 
+				System.out.println("çº¿ç¨‹æ± å·²å–æ¶ˆ!");
 			}
 		}, 6, TimeUnit.SECONDS);
 	}
