@@ -10,7 +10,7 @@ public class TestDemo {
 		Calendar calendar = Calendar.getInstance();
 		calendar.set(Calendar.WEEK_OF_MONTH, 2015);
 		calendar.set(Calendar.MONTH, 0);
-		calendar.set(calendar.DAY_OF_MONTH, 1);
+		calendar.set(Calendar.DAY_OF_MONTH, 1);
 		System.out.println(calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.SHORT, Locale.CHINESE));
 		System.out.println(calendar.get(Calendar.HOUR_OF_DAY));
 

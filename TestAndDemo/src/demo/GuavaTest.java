@@ -53,7 +53,7 @@ public class GuavaTest {
 		Map<String, String> mapA = ImmutableMap.of("1", "a", "2", "b", "3", "c", "22", "bb");
 		Map<String, String> mapB = ImmutableMap.of("1", "a", "2", "b_", "3", "c_");
 
-		MapDifference differenceMap = Maps.difference(mapA, mapB);
+		MapDifference<String, String> differenceMap = Maps.difference(mapA, mapB);
 
 		Map entriesDiffering = differenceMap.entriesDiffering();// 同一个key,不同的value
 		Map entriesOnlyOnLeft = differenceMap.entriesOnlyOnLeft();// 只在左map存在的key

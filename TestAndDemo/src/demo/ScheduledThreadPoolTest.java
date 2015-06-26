@@ -11,14 +11,14 @@ public class ScheduledThreadPoolTest {
 		final ScheduledExecutorService schedule = Executors.newScheduledThreadPool(1);
 
 		// 开始任务
-		final Future future1 = schedule.scheduleAtFixedRate(new Runnable() {
+		final Future<?> future1 = schedule.scheduleAtFixedRate(new Runnable() {
 			@Override
 			public void run() {
 				System.out.println("任务1");
 			}
 		}, 2, 1, TimeUnit.SECONDS);// 2表示2秒后执行,1表示循环间隔为1秒
 
-		final Future future2 = schedule.scheduleAtFixedRate(new Runnable() {
+		final Future<?> future2 = schedule.scheduleAtFixedRate(new Runnable() {
 			@Override
 			public void run() {
 				System.out.println("任务2");
