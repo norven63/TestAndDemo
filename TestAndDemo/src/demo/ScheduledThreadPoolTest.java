@@ -32,7 +32,7 @@ public class ScheduledThreadPoolTest {
 				future1.cancel(false);// 取消任务1
 				System.out.println("任务1已取消!");
 			}
-		}, 4, TimeUnit.SECONDS);
+		}, 4, TimeUnit.SECONDS);// 4表示4秒后执行
 
 		schedule.schedule(new Runnable() {
 			@Override
