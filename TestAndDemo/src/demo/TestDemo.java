@@ -1,14 +1,17 @@
 package demo;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 import com.google.gson.Gson;
 
 public class TestDemo {
 	public static void main(String[] args) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy年 MM月 dd日");
+		System.out.println(sdf.format(new Date()));
+		
 		// Calendar calendar = Calendar.getInstance();
 		// calendar.set(Calendar.WEEK_OF_MONTH, 2015);
 		// calendar.set(Calendar.MONTH, 0);
@@ -18,7 +21,7 @@ public class TestDemo {
 		// System.out.println(calendar.get(Calendar.HOUR_OF_DAY));
 
 		// A a = new A();
-		// List<A> list = a.testA(a);// 这里声明list时，所用的A即会给下面的testA方法第一个V赋值
+		// List<A> list = a.testA(a);// 杩欓噷澹版槑list鏃讹紝鎵�鐢ㄧ殑A鍗充細缁欎笅闈㈢殑testA鏂规硶绗竴涓猇璧嬪��
 		// System.out.println(list.get(0));
 		
 		String a = "{\"a\":\"abc\",\"b\":2}";
@@ -37,7 +40,7 @@ public class TestDemo {
 	}
 
 	static class A {
-		// 第一个V才是方法里可以用的。第二个V只是用来控制返回值的类型。
+		// 绗竴涓猇鎵嶆槸鏂规硶閲屽彲浠ョ敤鐨勩�傜浜屼釜V鍙槸鐢ㄦ潵鎺у埗杩斿洖鍊肩殑绫诲瀷銆�
 		public <V> List<V> testA(V v) {
 			List<V> returnVlaue = new ArrayList<V>();
 			returnVlaue.add(v);
