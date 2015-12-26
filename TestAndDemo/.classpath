@@ -4,6 +4,8 @@
 	<classpathentry exported="true" kind="lib" path="libs/guava-16.0.1.jar"/>
 	<classpathentry kind="lib" path="libs/gson-2.2.4.jar"/>
 	<classpathentry kind="lib" path="libs/rxjava-1.0.12.jar"/>
+	<classpathentry kind="lib" path="libs/freemarker-2.3.23.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="libs/greendao-generator-2.0.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
