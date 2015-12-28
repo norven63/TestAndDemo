@@ -10,6 +10,7 @@ public class ApkDownloadInfo {
     private int taskId;
     private Integer progress;
     private Integer statu;
+    private Long total;
     private String label;
     private String url;
     private String fileName;
@@ -23,11 +24,12 @@ public class ApkDownloadInfo {
         this.id = id;
     }
 
-    public ApkDownloadInfo(Long id, int taskId, Integer progress, Integer statu, String label, String url, String fileName, String filePath, String pkgName) {
+    public ApkDownloadInfo(Long id, int taskId, Integer progress, Integer statu, Long total, String label, String url, String fileName, String filePath, String pkgName) {
         this.id = id;
         this.taskId = taskId;
         this.progress = progress;
         this.statu = statu;
+        this.total = total;
         this.label = label;
         this.url = url;
         this.fileName = fileName;
@@ -65,6 +67,14 @@ public class ApkDownloadInfo {
 
     public void setStatu(Integer statu) {
         this.statu = statu;
+    }
+
+    public Long getTotal() {
+        return total;
+    }
+
+    public void setTotal(Long total) {
+        this.total = total;
     }
 
     public String getLabel() {

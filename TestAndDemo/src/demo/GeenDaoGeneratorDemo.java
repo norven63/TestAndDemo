@@ -18,6 +18,7 @@ public class GeenDaoGeneratorDemo {
         note.addIntProperty("taskId").notNull();
         note.addIntProperty("progress");
         note.addIntProperty("statu");
+        note.addLongProperty("total");
         note.addStringProperty("label");
         note.addStringProperty("url");
         note.addStringProperty("fileName");

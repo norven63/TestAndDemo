@@ -27,11 +27,12 @@ public class ApkDownloadInfoDao extends AbstractDao<ApkDownloadInfo, Long> {
         public final static Property TaskId = new Property(1, int.class, "taskId", false, "TASK_ID");
         public final static Property Progress = new Property(2, Integer.class, "progress", false, "PROGRESS");
         public final static Property Statu = new Property(3, Integer.class, "statu", false, "STATU");
-        public final static Property Label = new Property(4, String.class, "label", false, "LABEL");
-        public final static Property Url = new Property(5, String.class, "url", false, "URL");
-        public final static Property FileName = new Property(6, String.class, "fileName", false, "FILE_NAME");
-        public final static Property FilePath = new Property(7, String.class, "filePath", false, "FILE_PATH");
-        public final static Property PkgName = new Property(8, String.class, "pkgName", false, "PKG_NAME");
+        public final static Property Total = new Property(4, Long.class, "total", false, "TOTAL");
+        public final static Property Label = new Property(5, String.class, "label", false, "LABEL");
+        public final static Property Url = new Property(6, String.class, "url", false, "URL");
+        public final static Property FileName = new Property(7, String.class, "fileName", false, "FILE_NAME");
+        public final static Property FilePath = new Property(8, String.class, "filePath", false, "FILE_PATH");
+        public final static Property PkgName = new Property(9, String.class, "pkgName", false, "PKG_NAME");
     };
 
 
@@ -51,11 +52,12 @@ public class ApkDownloadInfoDao extends AbstractDao<ApkDownloadInfo, Long> {
                 "\"TASK_ID\" INTEGER NOT NULL ," + // 1: taskId
                 "\"PROGRESS\" INTEGER," + // 2: progress
                 "\"STATU\" INTEGER," + // 3: statu
-                "\"LABEL\" TEXT," + // 4: label
-                "\"URL\" TEXT," + // 5: url
-                "\"FILE_NAME\" TEXT," + // 6: fileName
-                "\"FILE_PATH\" TEXT," + // 7: filePath
-                "\"PKG_NAME\" TEXT);"); // 8: pkgName
+                "\"TOTAL\" INTEGER," + // 4: total
+                "\"LABEL\" TEXT," + // 5: label
+                "\"URL\" TEXT," + // 6: url
+                "\"FILE_NAME\" TEXT," + // 7: fileName
+                "\"FILE_PATH\" TEXT," + // 8: filePath
+                "\"PKG_NAME\" TEXT);"); // 9: pkgName
     }
 
     /** Drops the underlying database table. */
@@ -85,29 +87,34 @@ public class ApkDownloadInfoDao extends AbstractDao<ApkDownloadInfo, Long> {
             stmt.bindLong(4, statu);
         }
  
+        Long total = entity.getTotal();
+        if (total != null) {
+            stmt.bindLong(5, total);
+        }
+ 
         String label = entity.getLabel();
         if (label != null) {
-            stmt.bindString(5, label);
+            stmt.bindString(6, label);
         }
  
         String url = entity.getUrl();
         if (url != null) {
-            stmt.bindString(6, url);
+            stmt.bindString(7, url);
         }
  
         String fileName = entity.getFileName();
         if (fileName != null) {
-            stmt.bindString(7, fileName);
+            stmt.bindString(8, fileName);
         }
  
         String filePath = entity.getFilePath();
         if (filePath != null) {
-            stmt.bindString(8, filePath);
+            stmt.bindString(9, filePath);
         }
  
         String pkgName = entity.getPkgName();
         if (pkgName != null) {
-            stmt.bindString(9, pkgName);
+            stmt.bindString(10, pkgName);
         }
     }
 
@@ -125,11 +132,12 @@ public class ApkDownloadInfoDao extends AbstractDao<ApkDownloadInfo, Long> {
             cursor.getInt(offset + 1), // taskId
             cursor.isNull(offset + 2) ? null : cursor.getInt(offset + 2), // progress
             cursor.isNull(offset + 3) ? null : cursor.getInt(offset + 3), // statu
-            cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // label
-            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // url
-            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // fileName
-            cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // filePath
-            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8) // pkgName
+            cursor.isNull(offset + 4) ? null : cursor.getLong(offset + 4), // total
+            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // label
+            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // url
+            cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // fileName
+            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // filePath
+            cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9) // pkgName
         );
         return entity;
     }
@@ -141,11 +149,12 @@ public class ApkDownloadInfoDao extends AbstractDao<ApkDownloadInfo, Long> {
         entity.setTaskId(cursor.getInt(offset + 1));
         entity.setProgress(cursor.isNull(offset + 2) ? null : cursor.getInt(offset + 2));
         entity.setStatu(cursor.isNull(offset + 3) ? null : cursor.getInt(offset + 3));
-        entity.setLabel(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
-        entity.setUrl(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
-        entity.setFileName(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
-        entity.setFilePath(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
-        entity.setPkgName(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
+        entity.setTotal(cursor.isNull(offset + 4) ? null : cursor.getLong(offset + 4));
+        entity.setLabel(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
+        entity.setUrl(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
+        entity.setFileName(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
+        entity.setFilePath(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
+        entity.setPkgName(cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9));
      }
     
     /** @inheritdoc */
