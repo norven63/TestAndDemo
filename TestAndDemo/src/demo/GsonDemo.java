@@ -1,15 +1,15 @@
 package demo;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import com.sun.javafx.collections.MappingChange.Map;
 
 public class GsonDemo {
-    class Test {
+    static class Test {
         String a;
         String b;
 
@@ -19,27 +19,42 @@ public class GsonDemo {
         }
     }
 
+    static class A {
+        private int i = 1;
+        private Type type = Type.TypeB;
+
+        @Override
+        public String toString() {
+            return "A [i=" + i + ", type=" + type + "]";
+        }
+    }
+
+    enum Type {
+        TypeA, TypeB;
+    }
+
     public static void main(String[] args) {
-        final List<Object> list = new ArrayList<Object>();
-        list.add("2");
-        list.add("2");
-        list.add("4");
-
-        final List<String> list2 = new ArrayList<String>();
-        list2.add("a");
-        list2.add("b");
-        list.add(list2);
-
         final GsonBuilder gsonBuilder = new GsonBuilder();
         final Gson gson = gsonBuilder.create();
 
-        final String jsonString = gson.toJson(list2);
-
-        // Test result = gson.fromJson("{\"a\":\"abc\",\"b\":\"123\"}", Test.class);
-        final Map<String, String> result = gson.fromJson("{\"a\":\"abc\",\"b\":\"123\"}",
-                new TypeToken<Map<String, String>>() {
+        List<Test> testList = gson.fromJson("[{\"a\":\"abc1\",\"b\":\"111\"},{\"a\":\"abc2\",\"b\":\"222\"}]",
+                new TypeToken<ArrayList<Test>>() {
                 }.getType());
 
-        System.out.println(result);
+        for (Test item : testList) {
+            System.out.println("test item: " + item.toString());
+        }
+
+        HashMap<String, String> testMap = gson.fromJson("{\"a\":\"abc\",\"b\":\"123\"}",
+                new TypeToken<HashMap<String, String>>() {
+                }.getType());//注意，这里的申明需要使用HashMap，而非Map
+
+        System.out.println("testMap:" + testMap);
+
+        //关于枚举的映射
+        Gson sGson = new Gson();
+        System.out.println("A to json: " + sGson.toJson(new A()));
+        A a = sGson.fromJson("{\"i\":1,\"type\":\"TypeB\"}", A.class);
+        System.out.println("A from json: " + a.toString());
     }
 }
