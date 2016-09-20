@@ -53,8 +53,9 @@ public class GsonDemo {
 
         //关于枚举的映射
         Gson sGson = new Gson();
-        System.out.println("A to json: " + sGson.toJson(new A()));
-        A a = sGson.fromJson("{\"i\":1,\"type\":\"TypeB\"}", A.class);
+        String aJsonStr = sGson.toJson(new A());
+        System.out.println("A to json: " + aJsonStr);
+        A a = sGson.fromJson(aJsonStr, A.class);
         System.out.println("A from json: " + a.toString());
     }
 }
