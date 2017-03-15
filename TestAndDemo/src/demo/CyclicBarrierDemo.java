@@ -6,7 +6,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 /**
- * 本示例说明：各个线程的barrier.await()超时逻辑都会被执行到。
+ * 本示例说明：每个线程的barrier.await()超时逻辑都会被执行到，且触发barrier.allFinish()的逻辑（例子中的runnable1分别被两个不同的Thread执行了）
  * 如果想编写一段统一的超时逻辑（或者说结束逻辑），需要自行实现防止重复调用的控制。
  */
 public class CyclicBarrierDemo {
